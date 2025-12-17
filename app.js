@@ -53,12 +53,12 @@ function draw() {
   const paddle1Left = paddle1X;
   const paddle1Right = paddle1X + paddleWidth;
   const paddle1Top = paddle1Y;
-  const paddle1Bottom = paddle1Y - paddleHeight;
+  const paddle1Bottom = paddle1Y + paddleHeight;
 
   const paddle2Left = paddle2X;
   const paddle2Right = paddle2X + paddleWidth;
   const paddle2Top = paddle2Y;
-  const paddle2Bottom = paddle2Y - paddleHeight;
+  const paddle2Bottom = paddle2Y + paddleHeight;
 
   drawBall();
 
@@ -79,11 +79,11 @@ function draw() {
   }
   // paddle collision (right paddle)
   if (dx > 0) {
-    const willHitLeftPaddleHorizontally = ballRight + dx >= paddle2Left;
-    const overlapsLeftPaddleVertically =
+    const willHitRightPaddleHorizontally = ballRight + dx >= paddle2Left;
+    const overlapsRightPaddleVertically =
       ballBottom >= paddle2Top && ballTop <= paddle2Bottom;
 
-    if (willHitLeftPaddleHorizontally && overlapsLeftPaddleVertically) {
+    if (willHitRightPaddleHorizontally && overlapsRightPaddleVertically) {
       dx = -dx;
       x = paddle2Left - ballRadius;
     }
