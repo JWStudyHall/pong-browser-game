@@ -1,9 +1,19 @@
+const messageEl = document.querySelector("#message");
+const p1ScoreEl = document.querySelector("#p1score");
+const p2ScoreEl = document.querySelector("#p2score");
+const resetBtnEl = document.querySelector("#resetButton");
+
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const runButton = document.getElementById("runButton");
 const ballRadius = 20;
 const paddleWidth = 10;
 const paddleHeight = 75;
+let player1Score = 0;
+let player2Score = 0;
+const pointsPerRound = 100;
+const winScore = 500;
+let isGameOver = false;
 
 let paddle1X = 0;
 let paddle1Y = (canvas.height - paddleHeight) / 2;
@@ -18,10 +28,17 @@ let p1DownPressed = false;
 let p2UpPressed = false;
 let p2DownPressed = false;
 
+function resetBall(towardRight) {
+  x = canvas.width / 2;
+  y = canvas.height / 2;
+  dx = towardRight ? 2 : -2;
+  dy = Math.random() < 0.5 ? 2 : -2;
+}
+
 if (ctx) {
   ctx.font = "italic 90px monaco";
   ctx.fillStyle = "green";
-  ctx.fillText("PONG", 130, 170);
+  ctx.fillText("PONG", 130, 190);
 }
 
 function drawPaddle(paddleX, paddleY) {
@@ -43,6 +60,14 @@ function drawBall() {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Check if game is over
+  if (isGameOver) {
+    drawBall();
+    drawPaddle(paddle1X, paddle1Y);
+    drawPaddle(paddle2X, paddle2Y);
+    return;
+  }
+
   // Compute "edges" of the ball
   const ballLeft = x - ballRadius;
   const ballRight = x + ballRadius;
@@ -50,13 +75,11 @@ function draw() {
   const ballBottom = y + ballRadius;
 
   //compute paddle edges
-  const paddle1Left = paddle1X;
   const paddle1Right = paddle1X + paddleWidth;
   const paddle1Top = paddle1Y;
   const paddle1Bottom = paddle1Y + paddleHeight;
 
   const paddle2Left = paddle2X;
-  const paddle2Right = paddle2X + paddleWidth;
   const paddle2Top = paddle2Y;
   const paddle2Bottom = paddle2Y + paddleHeight;
 
@@ -89,6 +112,28 @@ function draw() {
     }
   }
 
+  if (ballRight < 0) {
+    player2Score += pointsPerRound;
+    p2ScoreEl.textContent = player2Score;
+    if (player2Score >= winScore) {
+      isGameOver = true;
+      messageEl.textContent = "Player 2 Wins!";
+      return;
+    }
+    resetBall(true);
+  }
+
+  if (ballLeft > canvas.width) {
+    player1Score += pointsPerRound;
+    p1ScoreEl.textContent = player1Score;
+    if (player1Score >= winScore) {
+      isGameOver = true;
+      messageEl.textContent = "Player 1 Wins!";
+      return;
+    }
+    resetBall(false);
+  }
+
   if (p1DownPressed) {
     paddle1Y = Math.min(paddle1Y + 7, canvas.height - paddleHeight);
   } else if (p1UpPressed) {
@@ -105,9 +150,12 @@ function draw() {
   drawPaddle(paddle2X, paddle2Y);
 }
 
+let interval 
+
 function startGame() {
   //   drawPaddle();
-  setInterval(draw, 10);
+  console.log("inside of start game");
+  interval = setInterval(draw, 10);
   document.addEventListener("keydown", keyDownHandler);
   document.addEventListener("keyup", keyUpHandler);
   function keyDownHandler(e) {
@@ -144,4 +192,16 @@ function startGame() {
 runButton.addEventListener("click", () => {
   startGame();
   runButton.disabled = true;
+});
+
+resetBtnEl.addEventListener("click", () => {
+  //reset the game
+  player1Score = 0;
+  player2Score = 0;
+  isGameOver = false;
+  messageEl.textContent = "";
+  p1ScoreEl.textContent = 0;
+  p2ScoreEl.textContent = 0;
+  clearInterval(interval)
+  startGame();
 });
