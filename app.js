@@ -28,6 +28,8 @@ let p1DownPressed = false;
 let p2UpPressed = false;
 let p2DownPressed = false;
 
+//Game state
+
 function resetBall(towardRight) {
   x = canvas.width / 2;
   y = canvas.height / 2;
@@ -36,10 +38,18 @@ function resetBall(towardRight) {
 }
 
 if (ctx) {
-  ctx.font = "italic 90px monaco";
-  ctx.fillStyle = "green";
+  ctx.font = "bold italic 90px monaco";
+  ctx.fillStyle = "#d1cece";
   ctx.fillText("PONG", 130, 190);
 }
+
+// function showStartScreen() {
+//   ctx.fillStyle = "#d1cece";
+//   ctx.fillRect(0, 0, canvas.width, canvas.height);
+//   ctx.font = "italic 90px monaco";
+//   ctx.fillStyle = "black";
+//   ctx.fillText("PONG", 130, 170);
+// }
 
 function drawPaddle(paddleX, paddleY) {
   ctx.beginPath();
@@ -56,6 +66,11 @@ function drawBall() {
   ctx.fill();
   ctx.closePath();
 }
+function drawScore() {
+  ctx.font = "Bold 30px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`${player1Score} : ${player2Score}`, 195, 50);
+}
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -67,7 +82,7 @@ function draw() {
     drawPaddle(paddle2X, paddle2Y);
     return;
   }
-
+  drawScore();
   // Compute "edges" of the ball
   const ballLeft = x - ballRadius;
   const ballRight = x + ballRadius;
@@ -150,7 +165,7 @@ function draw() {
   drawPaddle(paddle2X, paddle2Y);
 }
 
-let interval 
+let interval;
 
 function startGame() {
   //   drawPaddle();
@@ -202,6 +217,7 @@ resetBtnEl.addEventListener("click", () => {
   messageEl.textContent = "";
   p1ScoreEl.textContent = 0;
   p2ScoreEl.textContent = 0;
-  clearInterval(interval)
-  startGame();
+  clearInterval(interval);
+  // showStartScreen();
+  //
 });
