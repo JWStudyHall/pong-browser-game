@@ -11,7 +11,8 @@ canvas {
 }
 
 #myCanvas {
-  background-image: url("https://apis.mail.yahoo.com/ws/v3/mailboxes/@.id==VjN-gcTUe3qs0em9fbocqb99VP8I6LBbYELO3bb8C8SHyTZ9rxBxh5TDRUJ7Sh0sdkto_tmbZU_QP6bd5QzJLzvu9w/messages/@.id==AAB9AhRJ8787cdbwdu6Rsm4UITa/content/parts/@.id==2/thumbnail?appid=YMailNovationLaunch");
+  background-color: transparent !important;
+  background-image: url("https://i.pinimg.com/736x/db/bc/4e/dbbc4e759dd65d83fbc1dba0b1a4afd2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

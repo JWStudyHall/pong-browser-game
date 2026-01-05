@@ -70,7 +70,7 @@ function drawScore() {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+ 
   // Check if game is over
   if (isGameOver) {
     drawBall();
