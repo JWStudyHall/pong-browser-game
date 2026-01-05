@@ -49,7 +49,7 @@ if (ctx) {
 function drawPaddle(paddleX, paddleY) {
   ctx.beginPath();
   ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095ddff";
+  ctx.fillStyle = "#f1f5f6ff";
   ctx.fill();
   ctx.closePath();
 }
