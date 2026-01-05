@@ -5,15 +5,19 @@
 }
 
 canvas {
-  background: #d1cece;
   display: block;
   margin: 0 auto;
 }
 
 #myCanvas {
-  background-color: transparent !important;
+  display: block;
+  margin: 0 auto;
+
+  background: url("https://i.pinimg.com/736x/db/bc/4e/dbbc4e759dd65d83fbc1dba0b1a4afd2.jpg")
+    center / cover no-repeat;
+  /* background-color: transparent !important;
   background-image: url("https://i.pinimg.com/736x/db/bc/4e/dbbc4e759dd65d83fbc1dba0b1a4afd2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center; */
 }
