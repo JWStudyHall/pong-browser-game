@@ -1,6 +1,6 @@
 const messageEl = document.querySelector("#message");
-const p1ScoreEl = document.querySelector("#p1score");
-const p2ScoreEl = document.querySelector("#p2score");
+// const p1ScoreEl = document.querySelector("#p1score");
+// const p2ScoreEl = document.querySelector("#p2score");
 const resetBtnEl = document.querySelector("#resetButton");
 
 const canvas = document.getElementById("myCanvas");
@@ -14,6 +14,9 @@ let player2Score = 0;
 const pointsPerRound = 100;
 const winScore = 500;
 let isGameOver = false;
+let ballSpeed = 2;
+const speedIncrement = 0.2;
+const maxSpeed = 6;
 
 let paddle1X = 0;
 let paddle1Y = (canvas.height - paddleHeight) / 2;
@@ -33,8 +36,8 @@ let p2DownPressed = false;
 function resetBall(towardRight) {
   x = canvas.width / 2;
   y = canvas.height / 2;
-  dx = towardRight ? 2 : -2;
-  dy = Math.random() < 0.5 ? 2 : -2;
+  dx = towardRight ? ballSpeed : -ballSpeed;
+  dy = Math.random() < 0.5 ? ballSpeed : -ballSpeed;
 }
 
 if (ctx) {
@@ -42,14 +45,6 @@ if (ctx) {
   ctx.fillStyle = "#d1cece";
   ctx.fillText("PONG", 130, 190);
 }
-
-// function showStartScreen() {
-//   ctx.fillStyle = "#d1cece";
-//   ctx.fillRect(0, 0, canvas.width, canvas.height);
-//   ctx.font = "italic 90px monaco";
-//   ctx.fillStyle = "black";
-//   ctx.fillText("PONG", 130, 170);
-// }
 
 function drawPaddle(paddleX, paddleY) {
   ctx.beginPath();
@@ -60,11 +55,12 @@ function drawPaddle(paddleX, paddleY) {
 }
 
 function drawBall() {
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
+  ctx.save();
+  ctx.font = `${ballRadius * 2}px Arial`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("🎾", x, y);
+  ctx.restore();
 }
 function drawScore() {
   ctx.font = "Bold 30px Arial";
@@ -129,9 +125,15 @@ function draw() {
 
   if (ballRight < 0) {
     player2Score += pointsPerRound;
-    p2ScoreEl.textContent = player2Score;
+    if (ballSpeed < maxSpeed) {
+      ballSpeed += speedIncrement;
+    }
+    let dx = ballSpeed;
+    let dy = Math.random() < 0.5 ? ballSpeed : -ballSpeed;
+    // p2ScoreEl.textContent = player2Score;
     if (player2Score >= winScore) {
       isGameOver = true;
+      messageEl.style.fontSize = "60px";
       messageEl.textContent = "Player 2 Wins!";
       return;
     }
@@ -140,9 +142,16 @@ function draw() {
 
   if (ballLeft > canvas.width) {
     player1Score += pointsPerRound;
-    p1ScoreEl.textContent = player1Score;
+    if (ballSpeed < maxSpeed) {
+      ballSpeed += speedIncrement;
+    }
+    dx = -ballSpeed;
+    dy = Math.random() < 0.5 ? ballSpeed : -ballSpeed;
+    // p1ScoreEl.textContent = player1Score;
     if (player1Score >= winScore) {
       isGameOver = true;
+      messageEl.style.fontSize = "60px";
+
       messageEl.textContent = "Player 1 Wins!";
       return;
     }
@@ -214,10 +223,13 @@ resetBtnEl.addEventListener("click", () => {
   player1Score = 0;
   player2Score = 0;
   isGameOver = false;
+  ballSpeed = 2;
+  paddle1Y = (canvas.height - paddleHeight) / 2;
+  paddle2Y = (canvas.height - paddleHeight) / 2;
+  resetBall(true);
   messageEl.textContent = "";
-  p1ScoreEl.textContent = 0;
-  p2ScoreEl.textContent = 0;
+  messageEl.style.fontSize = "";
+  runButton.disabled = false;
+
   clearInterval(interval);
-  // showStartScreen();
-  //
 });

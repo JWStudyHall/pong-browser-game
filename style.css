@@ -11,8 +11,8 @@ canvas {
 }
 
 #myCanvas {
-  background-image: url("https://media.istockphoto.com/id/978332866/vector/football-ground-field-vector-illustration.jpg?s=612x612&w=0&k=20&c=U6e7eYcVTz9Q-lFpGyRYJQhkjcB4lND-5mACQyT6QcU=");
-  background-size: cover; /* stretch to fill the canvas */
-  background-repeat: no-repeat; /* don’t tile */
-  background-position: center; /* center the image */
+  background-image: url("https://apis.mail.yahoo.com/ws/v3/mailboxes/@.id==VjN-gcTUe3qs0em9fbocqb99VP8I6LBbYELO3bb8C8SHyTZ9rxBxh5TDRUJ7Sh0sdkto_tmbZU_QP6bd5QzJLzvu9w/messages/@.id==AAB9AhRJ8787cdbwdu6Rsm4UITa/content/parts/@.id==2/thumbnail?appid=YMailNovationLaunch");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
