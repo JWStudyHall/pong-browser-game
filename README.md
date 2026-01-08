@@ -21,7 +21,9 @@ Clean game reset and restart logic
 ## Tech Stack
 
 HTML5 Canvas – rendering paddles, ball, and score
-Vanilla JavaScript – game loop, physics, input handling
+
+JavaScript – game loop, physics, input handling
+
 CSS – layout and static background image
 
 ## Controls
