@@ -39,6 +39,9 @@ Player 2 (Right Paddle)
 ## Game Rules
 
 Each score is worth 100 points
+
 Ball speed increases after each score (up to a max)
+
 First player to reach 500 points wins
+
 Game pauses on win until reset
