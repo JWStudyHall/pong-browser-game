@@ -5,8 +5,9 @@
 
 ## Description
 
-A modern browser-based recreation of the classic Pong game, built with vanilla JavaScript and the HTML5 Canvas API. Two players, keyboard controls, escalating speed, and a static tennis-court background.
-Simple on the surface. Surprisingly instructive under the hood.
+A modern browser-based recreation of the classic Pong game, built with JavaScript and the HTML5 Canvas API. 
+
+Two players, keyboard controls, escalating speed, and a tennis-court background with tennis ball.
 
 ## Features
 
