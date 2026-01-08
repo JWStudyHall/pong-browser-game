@@ -1,5 +1,8 @@
 # Pong
 
+## Game
+[Click here to play Pong](https://JWStudyHall.github.io/pong-browser-game)
+
 ## Description
 
 A modern browser-based recreation of the classic Pong game, built with vanilla JavaScript and the HTML5 Canvas API. Two players, keyboard controls, escalating speed, and a static tennis-court background.
