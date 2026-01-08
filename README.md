@@ -29,6 +29,7 @@ CSS – layout and static background image
 Player 1 (Left Paddle)
 W – Move up
 S – Move down
+
 Player 2 (Right Paddle)
 ↑ Arrow – Move up
 ↓ Arrow – Move down
