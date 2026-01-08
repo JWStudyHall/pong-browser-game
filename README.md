@@ -12,11 +12,17 @@ Two players, keyboard controls, escalating speed, and a tennis-court background 
 ## Features
 
 Two-player local gameplay
+
 Keyboard controls (Player 1 vs Player 2)
+
 Increasing ball speed as rounds progress
+
 First player to reach the win score wins
+
 Emoji-based ball rendering 🎾
+
 Static tennis court background using CSS
+
 Clean game reset and restart logic
 
 ## Tech Stack
